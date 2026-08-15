@@ -1,0 +1,912 @@
+<title>Balkonkraftwerk Zaubzerstraße</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{
+  --ground:#F5F6F7;
+  --surface:#FFFFFF;
+  --surface-2:#EDEFF1;
+  --ink:#14181C;
+  --ink-2:#414B53;
+  --ink-3:#6B757D;
+  --rule:#DCE0E4;
+  --rule-strong:#C3CAD0;
+  --worst:#B0453A;
+  --normal:#3A6EA8;
+  --best:#1C7F4C;
+  --worst-soft:#F2DED9;
+  --normal-soft:#DDE6F2;
+  --best-soft:#D7EADF;
+  --grid:#E6E9EC;
+  --shadow:0 1px 2px rgba(20,24,28,.05), 0 8px 24px -16px rgba(20,24,28,.28);
+
+  --serif:"Charter","Bitstream Charter","Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#111417;
+    --surface:#181C20;
+    --surface-2:#20252A;
+    --ink:#E9ECEE;
+    --ink-2:#B3BCC3;
+    --ink-3:#8A949C;
+    --rule:#2A3037;
+    --rule-strong:#3A424A;
+    --worst:#C85C48;
+    --normal:#5E8FD0;
+    --best:#2E9A67;
+    --worst-soft:#3A2320;
+    --normal-soft:#1E2A3C;
+    --best-soft:#16301F;
+    --grid:#242A30;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#111417;
+  --surface:#181C20;
+  --surface-2:#20252A;
+  --ink:#E9ECEE;
+  --ink-2:#B3BCC3;
+  --ink-3:#8A949C;
+  --rule:#2A3037;
+  --rule-strong:#3A424A;
+  --worst:#C85C48;
+  --normal:#5E8FD0;
+  --best:#2E9A67;
+  --worst-soft:#3A2320;
+  --normal-soft:#1E2A3C;
+  --best-soft:#16301F;
+  --grid:#242A30;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16.5px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px 96px}
+.prose{max-width:68ch}
+
+/* ---------- masthead ---------- */
+.mast{padding:64px 0 40px;border-bottom:2px solid var(--ink);margin-bottom:44px}
+.kicker{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);margin:0 0 20px;
+}
+h1{
+  font-family:var(--serif);font-weight:600;font-size:clamp(34px,6vw,54px);line-height:1.06;
+  letter-spacing:-.015em;margin:0 0 18px;text-wrap:balance;max-width:16ch;
+}
+.dek{font-size:19px;line-height:1.5;color:var(--ink-2);max-width:56ch;margin:0 0 32px}
+.facts{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px 28px;
+  font-size:14.5px;
+}
+.facts dt{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);margin:0 0 4px;
+}
+.facts dd{margin:0;color:var(--ink-2)}
+.facts dd strong{color:var(--ink);font-weight:600}
+
+/* ---------- sections ---------- */
+section{margin:0 0 64px;scroll-margin-top:24px}
+.sechead{display:flex;align-items:baseline;gap:14px;margin:0 0 8px}
+.secnum{
+  font-family:var(--mono);font-size:12px;color:var(--ink-3);letter-spacing:.06em;
+  flex:none;padding-top:2px;
+}
+h2{
+  font-family:var(--serif);font-weight:600;font-size:clamp(23px,3.2vw,31px);line-height:1.16;
+  letter-spacing:-.01em;margin:0;text-wrap:balance;
+}
+h3{
+  font-family:var(--serif);font-weight:600;font-size:20px;line-height:1.25;margin:32px 0 8px;
+}
+p{margin:0 0 15px}
+.prose p+p{margin-top:0}
+strong{font-weight:650;color:var(--ink)}
+a{color:var(--normal);text-underline-offset:2px;text-decoration-thickness:1px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--normal);outline-offset:3px;border-radius:2px}
+
+/* ---------- scenario legend ---------- */
+.legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin:0 0 20px;font-family:var(--mono);font-size:12px;letter-spacing:.03em}
+.legend span{display:inline-flex;align-items:center;gap:8px;color:var(--ink-2)}
+.swatch{width:11px;height:11px;border-radius:2.5px;flex:none}
+.sw-w{background:var(--worst)} .sw-n{background:var(--normal)} .sw-b{background:var(--best)}
+.swatch.tri{background:linear-gradient(to right,var(--worst) 0 33.3%,var(--normal) 33.3% 66.6%,var(--best) 66.6% 100%);width:22px}
+
+/* ---------- amortisation axis ---------- */
+.axisfig{
+  background:var(--surface);border:1px solid var(--rule);border-radius:6px;
+  padding:34px 30px 22px;margin:26px 0 12px;box-shadow:var(--shadow);
+}
+.axis{position:relative;height:120px;margin:0 78px 0 30px}
+.axis-unit{
+  position:absolute;right:-64px;bottom:26px;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+}
+.axis-line{position:absolute;left:0;right:0;bottom:34px;height:2px;background:var(--rule-strong)}
+.tick{position:absolute;bottom:34px;transform:translateX(-50%);text-align:center}
+.tick i{display:block;width:1px;height:7px;background:var(--rule-strong);margin:0 auto}
+.tick b{
+  display:block;font-family:var(--mono);font-size:11px;font-weight:400;color:var(--ink-3);
+  margin-top:6px;font-variant-numeric:tabular-nums;
+}
+.mark{position:absolute;bottom:36px;transform:translateX(-50%);text-align:center;width:132px}
+.mark .dot{
+  width:15px;height:15px;border-radius:50%;margin:0 auto;
+  border:2.5px solid var(--surface);box-shadow:0 0 0 1.5px currentColor;
+  background:currentColor;
+}
+.mark .val{
+  font-family:var(--mono);font-size:17px;font-weight:600;margin-bottom:5px;
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em;
+}
+.mark .lbl{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:3px;
+}
+.m-w{color:var(--worst)} .m-n{color:var(--normal)} .m-b{color:var(--best)}
+.figcap{
+  font-size:13.5px;color:var(--ink-3);margin:0 0 4px;max-width:62ch;line-height:1.5;
+}
+
+/* ---------- stat tiles ---------- */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:14px;margin:24px 0}
+.tile{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:18px 18px 16px}
+.tile .t-lbl{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:10px;
+}
+.tile .t-val{
+  font-family:var(--mono);font-size:27px;font-weight:600;line-height:1;letter-spacing:-.025em;
+  font-variant-numeric:tabular-nums;margin-bottom:7px;
+}
+.tile .t-sub{font-size:13px;color:var(--ink-3);line-height:1.4}
+
+/* ---------- tables ---------- */
+.tablewrap{overflow-x:auto;margin:22px 0 10px;border:1px solid var(--rule);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:520px}
+th,td{padding:10px 16px;text-align:right;border-bottom:1px solid var(--rule)}
+th:first-child,td:first-child{text-align:left}
+thead th{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:400;background:var(--surface-2);
+  position:sticky;top:0;white-space:nowrap;
+}
+tbody td{font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:13.5px;color:var(--ink-2)}
+tbody td:first-child{font-family:var(--sans);font-size:14.5px;color:var(--ink)}
+tbody tr:last-child td{border-bottom:none}
+tr.rule-top td{border-top:2px solid var(--rule-strong)}
+tr.head td{background:var(--surface-2);font-weight:600;color:var(--ink)}
+td.w{color:var(--worst)} td.n{color:var(--normal)} td.b{color:var(--best)}
+td.em{font-weight:650;font-size:14.5px}
+caption{caption-side:top;text-align:left;padding:14px 16px 10px;font-size:13.5px;color:var(--ink-3)}
+
+/* ---------- charts ---------- */
+.chart{
+  background:var(--surface);border:1px solid var(--rule);border-radius:6px;
+  padding:24px 26px 18px;margin:22px 0 10px;box-shadow:var(--shadow);
+}
+.chart h4{
+  font-family:var(--serif);font-size:17px;font-weight:600;margin:0 0 4px;
+}
+.chart .csub{font-size:13px;color:var(--ink-3);margin:0 0 20px}
+.plot{
+  position:relative;height:220px;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;
+  gap:4px;align-items:end;padding-bottom:0;border-bottom:1px solid var(--rule-strong);
+}
+.plot::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(to top,transparent 0,transparent calc(25% - 1px),var(--grid) calc(25% - 1px),var(--grid) 25%);
+}
+.mgroup{display:flex;align-items:flex-end;justify-content:center;gap:2px;height:100%;position:relative;z-index:1}
+.bar{flex:1;min-width:0;border-radius:3px 3px 0 0;cursor:default;transition:filter .12s}
+.bar:hover{filter:brightness(1.12)}
+.b-w{background:var(--worst)} .b-n{background:var(--normal)} .b-b{background:var(--best)}
+.xaxis{
+  display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;margin-top:8px;
+  font-family:var(--mono);font-size:10.5px;color:var(--ink-3);text-align:center;
+}
+.yaxis{
+  position:absolute;left:-34px;top:0;bottom:0;width:30px;
+  font-family:var(--mono);font-size:10px;color:var(--ink-3);text-align:right;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.plotbox{position:relative;margin-left:34px}
+
+/* stacked energy bars */
+.flow{display:flex;flex-direction:column;gap:18px;margin:20px 0 6px}
+.flowrow .fl-head{
+  display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);
+}
+.flowrow .fl-head b{font-size:13px;letter-spacing:0;text-transform:none;color:var(--ink);font-variant-numeric:tabular-nums}
+.stack{display:flex;height:34px;gap:2px;border-radius:4px;overflow:hidden}
+.seg{position:relative;display:flex;align-items:center;padding:0 9px;min-width:2px;overflow:hidden;
+  font-family:var(--mono);font-size:11.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.seg.s1{color:#fff}
+.s-save-w{background:var(--worst)} .s-save-n{background:var(--normal)} .s-save-b{background:var(--best)}
+.s-standby{background:var(--rule-strong);color:var(--ink-2)}
+.s-loss{background:var(--surface-2);color:var(--ink-3);box-shadow:inset 0 0 0 1px var(--rule)}
+.s-feed{background:var(--surface-2);color:var(--ink-3);box-shadow:inset 0 0 0 1px var(--rule)}
+.flowkey{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.flowkey span{display:inline-flex;align-items:center;gap:7px}
+
+/* horizontal sensitivity bars */
+.hbars{display:flex;flex-direction:column;gap:11px;margin:18px 0 6px}
+.hrow{display:grid;grid-template-columns:minmax(96px,auto) 1fr minmax(58px,auto);gap:14px;align-items:center}
+.hrow .hl{font-family:var(--mono);font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.htrack{height:16px;background:var(--surface-2);border-radius:3px;overflow:hidden}
+.hfill{height:100%;border-radius:3px;background:var(--normal)}
+.hrow .hv{
+  font-family:var(--mono);font-size:12.5px;font-variant-numeric:tabular-nums;
+  color:var(--ink);text-align:right;font-weight:600;
+}
+.hrow.hi .hfill{background:var(--best)}
+.hrow.lo .hfill{background:var(--worst)}
+
+/* callout */
+.callout{
+  background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--normal);
+  border-radius:0 6px 6px 0;padding:20px 24px;margin:24px 0;
+}
+.callout.warn{border-left-color:var(--worst)}
+.callout p:last-child{margin-bottom:0}
+.callout .co-lbl{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:8px;
+}
+
+ol,ul{padding-left:22px;margin:0 0 15px}
+li{margin-bottom:9px}
+li::marker{color:var(--ink-3)}
+ol.steps{counter-reset:s;list-style:none;padding-left:0}
+ol.steps li{
+  counter-increment:s;position:relative;padding-left:40px;margin-bottom:18px;
+}
+ol.steps li::before{
+  content:counter(s);position:absolute;left:0;top:1px;
+  width:26px;height:26px;border-radius:50%;background:var(--normal);color:#fff;
+  font-family:var(--mono);font-size:12px;display:flex;align-items:center;justify-content:center;
+}
+
+/* tooltip */
+#tip{
+  position:fixed;z-index:50;pointer-events:none;opacity:0;transition:opacity .1s;
+  background:var(--ink);color:var(--ground);padding:7px 11px;border-radius:5px;
+  font-family:var(--mono);font-size:11.5px;line-height:1.45;white-space:nowrap;
+  box-shadow:0 4px 16px rgba(0,0,0,.25);
+}
+#tip.on{opacity:1}
+#tip .tt{color:var(--ground);opacity:.62;display:block;margin-bottom:2px}
+
+footer{border-top:1px solid var(--rule);padding-top:26px;margin-top:12px;font-size:13.5px;color:var(--ink-3)}
+footer a{color:var(--ink-2)}
+footer ul{padding-left:18px}
+footer li{margin-bottom:5px}
+
+@media (max-width:640px){
+  .wrap{padding:0 18px 64px}
+  .mast{padding:40px 0 30px}
+  .axis{height:150px}
+  .mark{width:100px}
+  .chart{padding:20px 16px 14px}
+  .plotbox{margin-left:28px}
+  .yaxis{left:-28px;width:24px}
+  .seg{padding:0 5px;font-size:10.5px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <p class="kicker">Wirtschaftlichkeitsrechnung · Stand August 2026</p>
+  <h1>Rechnet sich das Balkonkraftwerk?</h1>
+  <p class="dek">
+    EcoFlow STREAM Komplettset M — 2 × 500 Wp mit 1,92-kWh-Speicher, montiert an
+    einem südseitigen Balkon im 1. Obergeschoss mit Baumverschattung.
+    Drei Szenarien über 20 Jahre.
+  </p>
+  <dl class="facts">
+    <div><dt>Standort</dt><dd><strong>Zaubzerstraße 37</strong><br>81677 München-Bogenhausen</dd></div>
+    <div><dt>Anlage</dt><dd><strong>1,0 kWp</strong> + 1,92 kWh Speicher<br>Südbalkon, 1. OG</dd></div>
+    <div><dt>Angebot</dt><dd><strong>840,65 €</strong> statt 989,00 €<br>Svea Solar, inkl. Versand</dd></div>
+    <div><dt>Strompreis</dt><dd><strong>32,44 ct/kWh</strong><br>SWM Grundversorgung</dd></div>
+  </dl>
+</header>
+
+<section>
+  <div class="sechead"><span class="secnum">01</span><h2>Das Ergebnis in einer Zahl</h2></div>
+  <div class="prose">
+    <p>
+      Die Frage ist nicht, <em>ob</em> die Anlage Strom produziert, sondern wann sie sich
+      bezahlt gemacht hat. Diese eine Zahl streut extrem — von unter zwei Jahren bis
+      knapp am Ende der Modullebensdauer.
+    </p>
+  </div>
+
+  <div class="axisfig">
+    <div class="axis" id="axis">
+      <div class="axis-line"></div>
+      <div class="axis-unit">Jahre</div>
+    </div>
+    <p class="figcap">
+      Statische Amortisation in Jahren. Die Spreizung entsteht fast vollständig aus drei
+      Faktoren: Förderung beantragt oder nicht, Montagewinkel, Stärke der Baumverschattung.
+    </p>
+  </div>
+
+  <div class="legend">
+    <span><i class="swatch sw-w"></i>Worst Case</span>
+    <span><i class="swatch sw-n"></i>Normal Case</span>
+    <span><i class="swatch sw-b"></i>Best Case</span>
+  </div>
+
+  <div class="tiles">
+    <div class="tile">
+      <div class="t-lbl">Normalfall · Ertrag</div>
+      <div class="t-val" style="color:var(--normal)">627<span style="font-size:15px;letter-spacing:0"> kWh</span></div>
+      <div class="t-sub">im ersten Jahr, entspricht 627 kWh/kWp</div>
+    </div>
+    <div class="tile">
+      <div class="t-lbl">Normalfall · Ersparnis</div>
+      <div class="t-val" style="color:var(--normal)">176<span style="font-size:15px;letter-spacing:0"> €</span></div>
+      <div class="t-sub">Jahr 1, steigend mit dem Strompreis</div>
+    </div>
+    <div class="tile">
+      <div class="t-lbl">Normalfall · 20 Jahre</div>
+      <div class="t-val" style="color:var(--normal)">+3.303<span style="font-size:15px;letter-spacing:0"> €</span></div>
+      <div class="t-sub">Überschuss nach Abzug der Investition</div>
+    </div>
+    <div class="tile">
+      <div class="t-lbl">Normalfall · Rendite</div>
+      <div class="t-val" style="color:var(--normal)">27,9<span style="font-size:15px;letter-spacing:0"> %</span></div>
+      <div class="t-sub">interner Zinsfuß p. a.</div>
+    </div>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <caption>Alle Kennzahlen im Vergleich. Jahr 1 für Energiegrößen, 20 Jahre für Finanzgrößen.</caption>
+      <thead>
+        <tr><th>Kennzahl</th><th>Worst</th><th>Normal</th><th>Best</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Spezifischer Ertrag (kWh/kWp)</td><td>486</td><td>627</td><td>948</td></tr>
+        <tr><td>Stromerzeugung (kWh)</td><td class="w em">486</td><td class="n em">627</td><td class="b em">948</td></tr>
+        <tr><td>./. Standby des Speichers (kWh)</td><td>−123</td><td>−70</td><td>−35</td></tr>
+        <tr><td>./. Speicherverluste (kWh)</td><td>−25</td><td>−15</td><td>−17</td></tr>
+        <tr><td>./. Überschuss ins Netz (kWh)</td><td>0</td><td>0</td><td>−24</td></tr>
+        <tr class="rule-top"><td>Vermiedener Netzbezug (kWh)</td><td class="w em">338</td><td class="n em">542</td><td class="b em">871</td></tr>
+        <tr><td>Autarkiegrad</td><td>19 %</td><td>22 %</td><td>25 %</td></tr>
+        <tr class="head"><td colspan="4">Investition</td></tr>
+        <tr><td>Brutto inkl. Halterung (€)</td><td>1.021</td><td>961</td><td>931</td></tr>
+        <tr><td>./. Förderung Stadt München (€)</td><td>0</td><td>−320</td><td>−320</td></tr>
+        <tr><td>Netto-Investition (€)</td><td class="w em">1.021</td><td class="n em">641</td><td class="b em">611</td></tr>
+        <tr class="head"><td colspan="4">Wirtschaftlichkeit</td></tr>
+        <tr><td>Ersparnis Jahr 1 (€)</td><td>95</td><td>176</td><td>314</td></tr>
+        <tr><td>Amortisation statisch</td><td class="w em">18,7 J</td><td class="n em">3,7 J</td><td class="b em">1,9 J</td></tr>
+        <tr><td>Amortisation dynamisch</td><td>&gt; 20 J</td><td>3,9 J</td><td>1,9 J</td></tr>
+        <tr><td>Überschuss nach 20 Jahren (€)</td><td class="w em">+93</td><td class="n em">+3.303</td><td class="b em">+7.899</td></tr>
+        <tr><td>Kapitalwert NPV (€)</td><td>−163</td><td>+2.552</td><td>+6.990</td></tr>
+        <tr><td>Interner Zinsfuß</td><td>0,9 %</td><td>27,9 %</td><td>54,4 %</td></tr>
+        <tr><td>Stromgestehungskosten</td><td>31,5 ct</td><td>8,6 ct</td><td>4,0 ct</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <p>
+      Der Worst Case ist kein Rechenspiel. Er tritt genau dann ein, wenn die Förderung
+      nicht beantragt wurde, die Bäume stärker verschatten als erwartet und das Standby
+      des Speichers hoch bleibt. Dann steht die Anlage nach 20 Jahren bei null.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="sechead"><span class="secnum">02</span><h2>Wo der Strom bleibt</h2></div>
+  <div class="prose">
+    <p>
+      Erzeugter Strom ist nicht gesparter Strom. Vom Ertrag gehen der Dauerverbrauch des
+      Speichergeräts, die Lade- und Entladeverluste sowie der unvergütete Überschuss ab.
+      Was übrig bleibt, ist der tatsächlich vermiedene Netzbezug — nur er zählt.
+    </p>
+  </div>
+
+  <div class="chart">
+    <h4>Energiebilanz Jahr 1</h4>
+    <p class="csub">Aufteilung der Jahreserzeugung, in kWh</p>
+    <div class="flow" id="flow"></div>
+    <div class="flowkey">
+      <span><i class="swatch tri"></i>vermiedener Netzbezug (Farbe je Szenario)</span>
+      <span><i class="swatch" style="background:var(--rule-strong)"></i>Standby des Geräts</span>
+      <span><i class="swatch" style="background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--rule)"></i>Speicherverluste &amp; Überschuss</span>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <div class="co-lbl">Der unterschätzte Posten</div>
+    <p>
+      Das Speichergerät zieht rund um die Uhr Strom. Bei gemessenen 8 W sind das
+      <strong>70 kWh pro Jahr</strong> — mehr, als der Speicher im Normalfall an
+      zusätzlichem Eigenverbrauch überhaupt erwirtschaftet (54 kWh). Bei den in Tests
+      beobachteten 14–15 W sind es 123 kWh, also ein Viertel der gesamten Jahresernte.
+      Prüfen Sie den Wert nach dem Kauf in der EcoFlow-App über den Nachtverbrauch bei
+      leerer Batterie.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="sechead"><span class="secnum">03</span><h2>Der Jahresverlauf</h2></div>
+  <div class="prose">
+    <p>
+      Senkrecht montierte Module haben ein bemerkenswert flaches Jahresprofil: Im Dezember
+      liefern sie noch rund die Hälfte des Juniwertes, weil die tiefstehende Wintersonne
+      fast im rechten Winkel auftrifft. Eine aufgeständerte Anlage bricht im Dezember auf
+      18 % ihres Juniwertes ein.
+    </p>
+  </div>
+
+  <div class="chart">
+    <h4>Monatsertrag im ersten Jahr</h4>
+    <p class="csub">kWh pro Monat · Worst und Normal senkrecht am Geländer, Best aufgeständert bei ca. 20°</p>
+    <div class="legend" style="margin-bottom:18px">
+      <span><i class="swatch sw-w"></i>Worst Case</span>
+      <span><i class="swatch sw-n"></i>Normal Case</span>
+      <span><i class="swatch sw-b"></i>Best Case</span>
+    </div>
+    <div class="plotbox">
+      <div class="yaxis" id="yaxis"></div>
+      <div class="plot" id="plot"></div>
+      <div class="xaxis" id="xaxis"></div>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>
+      Das flache Profil ist wirtschaftlich wertvoller, als die Jahressumme vermuten lässt:
+      Winterstrom wird zuverlässig selbst verbraucht, Sommerstrom landet eher im Netz —
+      und dort ist er nichts wert. Dazu passt die Verschattung: Laubbäume nehmen von Mai
+      bis Oktober Licht weg, im Winter kaum.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="sechead"><span class="secnum">04</span><h2>Der Speicher trägt sich kaum selbst</h2></div>
+  <div class="prose">
+    <p>
+      Das Set kostet rund <strong>520 € mehr</strong> als zwei Module mit einem reinen
+      800-W-Mikrowechselrichter. Diese Mehrkosten muss der Speicher über den zusätzlich
+      selbst genutzten Strom wieder einspielen.
+    </p>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <caption>Was der Speicher gegenüber der reinen Modullösung zusätzlich bringt.</caption>
+      <thead>
+        <tr><th>Variante</th><th>Ersparnis/Jahr</th><th>Eigenverbrauch</th><th>Mehrkosten</th><th>Amortisation</th></tr>
+      </thead>
+      <tbody>
+        <tr class="head"><td colspan="5">Worst Case</td></tr>
+        <tr><td>ohne Speicher</td><td>93 €</td><td>72 %</td><td>—</td><td>—</td></tr>
+        <tr><td>STREAM Ultra 1,92 kWh</td><td>95 €</td><td>95 %</td><td>520 €</td><td class="w em">nie</td></tr>
+        <tr><td>STREAM Ultra X 3,84 kWh</td><td>95 €</td><td>95 %</td><td>970 €</td><td class="w em">nie</td></tr>
+        <tr class="head"><td colspan="5">Normal Case</td></tr>
+        <tr><td>ohne Speicher</td><td>158 €</td><td>81 %</td><td>—</td><td>—</td></tr>
+        <tr><td>STREAM Ultra 1,92 kWh</td><td>176 €</td><td>98 %</td><td>520 €</td><td class="em">30 Jahre</td></tr>
+        <tr><td>STREAM Ultra X 3,84 kWh</td><td>176 €</td><td>98 %</td><td>970 €</td><td class="em">55 Jahre</td></tr>
+        <tr class="head"><td colspan="5">Best Case</td></tr>
+        <tr><td>ohne Speicher</td><td>263 €</td><td>79 %</td><td>—</td><td>—</td></tr>
+        <tr><td>STREAM Ultra 1,92 kWh</td><td>314 €</td><td>96 %</td><td>520 €</td><td class="b em">10 Jahre</td></tr>
+        <tr><td>STREAM Ultra X 3,84 kWh</td><td>321 €</td><td>98 %</td><td>970 €</td><td class="em">17 Jahre</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <p>
+      Der Grund ist die Anlagengröße: <strong>1 kWp ist zu klein für einen Speicher.</strong>
+      In der Spitze liefert die Anlage 250–400 W, die Grundlast eines Haushalts liegt
+      tagsüber bereits bei 150–300 W. Es bleibt schlicht wenig Überschuss übrig, den der
+      Speicher einsammeln könnte — er kommt nur auf 64 bis 95 Vollzyklen im Jahr. Die
+      6.000 Zyklen der LFP-Zelle werden nie ausgeschöpft; es altert der Kalender, nicht
+      die Nutzung.
+    </p>
+  </div>
+
+  <div class="callout">
+    <div class="co-lbl">Zwei klare Konsequenzen</div>
+    <p>
+      <strong>Die Ultra X (3,84 kWh) lohnt sich hier nicht.</strong> Sie kostet rund 450 €
+      mehr und bringt im Normalfall exakt 0 kWh zusätzlich, im Best Case 20 kWh im Jahr —
+      etwa 7 €. Falls das Set eine Wahl zwischen beiden Batterien anbietet: die 1,92-kWh-Variante.
+    </p>
+    <p>
+      <strong>Für reine Rendite wäre die Anlage ohne Speicher besser.</strong> Zwei Module
+      mit 800-W-Mikrowechselrichter kosten rund 320 €, erzeugen genauso viel und kommen
+      auf 81 % statt 98 % Eigenverbrauch — bei einem Drittel der Investition und ohne
+      Standby-Verlust. Der Speicher kauft Notstromfähigkeit, App-Komfort und
+      Erweiterbarkeit. Das sind reale Werte, nur eben keine monetären.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="sechead"><span class="secnum">05</span><h2>320 € Förderung — nur mit Antrag vor dem Kauf</h2></div>
+  <div class="prose">
+    <p>
+      Die Stadt München fördert Balkonkraftwerke über das <strong>Förderprogramm
+      Klimaneutrale Gebäude (FKG)</strong> mit 0,40 € je Watt-Peak, gedeckelt auf 800 Wp
+      pro Wohneinheit und auf 50 % der Kosten. Für diese Anlage sind das die vollen
+      <strong>320 €</strong> — ein Drittel der Investition.
+    </p>
+  </div>
+
+  <div class="chart">
+    <h4>Einfluss der Förderung auf die Amortisation</h4>
+    <p class="csub">Basis Normal Case, Amortisation in Jahren</p>
+    <div class="hbars" id="hb-foerder"></div>
+  </div>
+
+  <div class="callout warn">
+    <div class="co-lbl">Reihenfolge entscheidend</div>
+    <p>
+      <strong>Der Antrag muss vor der Bestellung gestellt werden.</strong> Wer zuerst kauft,
+      verliert den Anspruch vollständig. Zum Vergleich: Der Aktionsrabatt von Svea Solar
+      beträgt 148,35 € — die Förderung ist mit 320 € mehr als doppelt so viel wert. Beides
+      zusammen gibt es nur, wenn die Reihenfolge stimmt. Mittel werden außerdem nur
+      vergeben, solange das städtische Budget reicht.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="sechead"><span class="secnum">06</span><h2>Welche Stellschraube wirklich zählt</h2></div>
+  <div class="prose">
+    <p>
+      Alle Sensitivitäten auf Basis des Normal Case. Je länger der Balken, desto länger
+      dauert die Amortisation.
+    </p>
+  </div>
+
+  <div class="chart">
+    <h4>Montageart</h4>
+    <p class="csub">Der größte Hebel, den Sie selbst in der Hand haben</p>
+    <div class="hbars" id="hb-mount"></div>
+  </div>
+
+  <div class="chart">
+    <h4>Verschattung durch Bäume und Nachbarbebauung</h4>
+    <p class="csub">Ertragsfaktor gegenüber freier Aufstellung — die größte Unsicherheit am Standort</p>
+    <div class="hbars" id="hb-shade"></div>
+  </div>
+
+  <div class="chart">
+    <h4>Strompreis</h4>
+    <p class="csub">Der SWM-Grundversorgungstarif liegt aktuell bei 32,44 ct/kWh</p>
+    <div class="hbars" id="hb-price"></div>
+  </div>
+
+  <div class="chart">
+    <h4>Standby-Verbrauch des Speichergeräts</h4>
+    <p class="csub">Herstellerangabe nach Firmware-Optimierung ca. 5 W, Tests messen 8–15 W</p>
+    <div class="hbars" id="hb-standby"></div>
+  </div>
+
+  <div class="callout">
+    <div class="co-lbl">Bemerkenswert</div>
+    <p>
+      <strong>Ihr Stromverbrauch ist für diese Entscheidung fast irrelevant.</strong>
+      Zwischen 1.500 und 4.500 kWh im Jahr bewegt sich die Amortisation nur von 3,9 auf
+      3,6 Jahre. Die Anlage ist so klein, dass praktisch alles selbst verbraucht wird,
+      sobald überhaupt eine normale Grundlast vorhanden ist. Verschattung und Montagewinkel
+      sind dagegen entscheidend.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="sechead"><span class="secnum">07</span><h2>Was neben dem Geld zu klären ist</h2></div>
+  <div class="prose">
+    <ul>
+      <li>
+        <strong>Zustimmung von Vermieter oder WEG.</strong> Seit der Reform des § 554 BGB
+        ist die Steckersolaranlage eine privilegierte Maßnahme und darf nur aus wichtigem
+        Grund verweigert werden. Einholen muss man sie trotzdem — vor allem zur Art der
+        Befestigung.
+      </li>
+      <li>
+        <strong>Aufständerung versus Optik.</strong> Die Neigung ist der größte selbst
+        steuerbare Hebel. Ob eine Aufständerung über das Geländer hinaus in einem Münchner
+        Mehrfamilienhaus durchgeht, ist die entscheidende offene Frage. Alternative:
+        aufständern <em>auf</em> dem Balkonboden statt über dem Geländer — optisch
+        unauffälliger, ertraglich fast gleichwertig.
+      </li>
+      <li>
+        <strong>Gewicht und Statik.</strong> 23,5 kg je Modul, zusammen 47 kg plus
+        Halterung. Bei Geländermontage im 1. OG auf die Tragfähigkeit des Geländers achten
+        und eine Absturzsicherung vorsehen. Die Montage ist laut Hersteller zu zweit
+        durchzuführen.
+      </li>
+      <li>
+        <strong>Windlast.</strong> Im 1. OG geringer als in oberen Etagen, aber eine
+        Aufständerung wirkt als Segel. Sturmsichere Befestigung ist Pflicht.
+      </li>
+      <li>
+        <strong>Verschattung dokumentieren.</strong> Vor dem Kauf über einige sonnige Tage
+        fotografieren, wann die Brüstung tatsächlich in der Sonne liegt. Das ist der
+        Parameter mit der größten Ergebnisspanne.
+      </li>
+      <li>
+        <strong>Marktstammdatenregister.</strong> Anmeldung innerhalb eines Monats, kostenlos
+        und verpflichtend. Eine Einspeisevergütung ist in dieser Rechnung mit 0 ct angesetzt:
+        Der Zweirichtungszähler kostet 20–25 € im Jahr, der Überschuss beträgt 0–24 kWh.
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sechead"><span class="secnum">08</span><h2>Empfehlung</h2></div>
+  <div class="prose">
+    <p>Die Anlage lohnt sich — unter drei Bedingungen.</p>
+    <ol class="steps">
+      <li>
+        <strong>Erst den FKG-Antrag stellen, dann bestellen.</strong> 320 € entscheiden
+        über 3,7 statt 5,4 Jahre Amortisation. Das ist der wichtigste einzelne
+        Handlungspunkt dieser Rechnung.
+      </li>
+      <li>
+        <strong>Nicht senkrecht montieren, wenn eine Aufständerung möglich ist.</strong>
+        Schon 20° Neigung bringen 34 % mehr Ertrag und ein um rund 1.000 € besseres
+        Ergebnis über 20 Jahre.
+      </li>
+      <li>
+        <strong>Die kleine Batterie nehmen, nicht die Ultra X.</strong> Der Aufpreis für
+        3,84 kWh amortisiert sich in keinem der drei Szenarien.
+      </li>
+    </ol>
+    <p>
+      Ein Ausblick, der die Bewertung dreht: Der STREAM Ultra verträgt bis zu 2.000 W
+      Solareingang. Wird die Anlage später auf 1,6 bis 2 kWp erweitert, fällt genug
+      Überschuss an, dass sich der Speicher klar rechnet. Unter diesem Gesichtspunkt ist
+      das Set eine sinnvolle erste Ausbaustufe — als Endzustand betrachtet ist der
+      Speicher betriebswirtschaftlich grenzwertig.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="sechead"><span class="secnum">09</span><h2>Modell und Annahmen</h2></div>
+  <div class="prose">
+    <p>
+      <strong>Ertrag.</strong> Referenz München, Süd, ca. 35° Neigung, unverschattet:
+      1.120 kWh/kWp im Jahr, inklusive 14 % Systemverluste. Ertragsfaktoren: senkrecht 90°
+      = 0,70 · 20° = 0,94 · 30° = 0,99. Moduldegradation 0,4–0,6 % im Jahr, getrennte
+      Monatsprofile für senkrechte und aufgeständerte Montage.
+    </p>
+    <p>
+      <strong>Verbrauch und Speicher.</strong> Statt einer pauschalen Eigenverbrauchsquote
+      rechnet das Modell stündlich: je Monat drei repräsentative Tagtypen — 30 % sonnig mit
+      doppeltem Ertrag, 40 % mittel, 30 % trüb mit einem Drittel — über je 24 Stunden mit
+      H0-ähnlichem Lastprofil. Reihenfolge: Direktverbrauch, Speicher laden, Rest ins Netz,
+      abends Speicher entladen. Ein Untertages-Gleichzeitigkeitsfaktor von 0,60 bis 0,80
+      bildet ab, dass kurze Lastspitzen und Erzeugungslücken innerhalb einer Stunde nicht
+      zusammenfallen. Nutzbare Kapazität 95 %, Round-Trip-Wirkungsgrad 80–90 %,
+      Kapazitätsverlust 1,0–2,5 % im Jahr, AC-Begrenzung 800 W.
+    </p>
+    <p>
+      <strong>Bewertung.</strong> Bewertet wird nicht die selbst genutzte Energie, sondern
+      der tatsächlich vermiedene Netzbezug: Eigenverbrauch abzüglich Standby. Das Standby
+      ist eine zusätzliche Last, die es ohne das Gerät nicht gäbe, und wird vollständig
+      gegengerechnet. Kalkulationszins 1–3 % als Opportunitätskosten. Halterung mit
+      90–180 € angesetzt — sie ist im Set <em>nicht</em> enthalten.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p>
+    Berechnet mit einem offenen Modell in reinem Python; Cashflow-Tabellen und alle
+    Kennzahlen liegen als CSV und JSON daneben. Angaben ohne Gewähr — die Verschattung
+    vor Ort ist der Parameter, den nur eine Beobachtung am Balkon klären kann.
+  </p>
+  <p><strong>Quellen</strong></p>
+  <ul>
+    <li><a href="https://www.swm.de/strom/preisanpassung">SWM — Strompreis Grundversorgung München ab 01.02.2026</a></li>
+    <li><a href="https://yuma.de/blogs/news/balkonkraftwerk-forderung-in-munchen-dein-guide-zum-320-euro-zuschuss">Förderprogramm Klimaneutrale Gebäude — 0,40 €/Wp bis 320 €</a></li>
+    <li><a href="https://www.swm.de/unternehmen/magazin/ratgeber/steckerfertige-pv-anlage">SWM — Steckerfertige PV-Anlagen in München</a></li>
+    <li><a href="https://www.balkonkraftwerk-kompendium.de/montage-aufstellorte/ausrichtung-neigungswinkel">Ertragsverlust bei senkrechter Montage</a></li>
+    <li><a href="https://www.smartzone.de/ecoflow-stream-ultra-x-im-test-xxl-speicher-fuer-balkonkraftwerke/">EcoFlow STREAM Ultra X im Test — Round-Trip, Standby, Garantie</a></li>
+    <li><a href="https://www.t-online.de/finanzen/frag-t-online-ihr-geld/id_101275292/einspeiseverguetung-wird-abgeschafft-trifft-es-balkon-kraftwerke-.html">Einspeisevergütung für Balkonkraftwerke 2026</a></li>
+    <li><a href="https://shop.sveasolar.de/product-page/stream-komplettset-m">Svea Solar — EcoFlow STREAM Komplettset M</a></li>
+  </ul>
+</footer>
+
+</div>
+
+<div id="tip" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  var tip = document.getElementById('tip');
+  function showTip(e, html){
+    tip.innerHTML = html;
+    tip.classList.add('on');
+    var r = tip.getBoundingClientRect();
+    var x = Math.min(Math.max(e.clientX - r.width/2, 8), window.innerWidth - r.width - 8);
+    var y = e.clientY - r.height - 14;
+    if (y < 8) y = e.clientY + 18;
+    tip.style.left = x + 'px';
+    tip.style.top = y + 'px';
+  }
+  function hideTip(){ tip.classList.remove('on'); }
+  function bind(el, html){
+    el.addEventListener('mousemove', function(e){ showTip(e, html); });
+    el.addEventListener('mouseleave', hideTip);
+  }
+
+  /* ---------- 01 Amortisationsachse ---------- */
+  var AX_MAX = 20;
+  var axis = document.getElementById('axis');
+  [0,5,10,15,20].forEach(function(t){
+    var d = document.createElement('div');
+    d.className = 'tick';
+    d.style.left = (t / AX_MAX * 100) + '%';
+    d.innerHTML = '<i></i><b>' + t + '</b>';
+    axis.appendChild(d);
+  });
+  [
+    {v:1.9,  lbl:'Best',   cls:'m-b', off:0},
+    {v:3.7,  lbl:'Normal', cls:'m-n', off:44},
+    {v:18.7, lbl:'Worst',  cls:'m-w', off:0}
+  ].forEach(function(m){
+    var d = document.createElement('div');
+    d.className = 'mark ' + m.cls;
+    var pos = m.v / AX_MAX * 100;
+    d.style.left = pos + '%';
+    d.style.bottom = (36 + m.off) + 'px';
+    // Marker nahe am Rand nicht mittig ausrichten, sonst laeuft das Label heraus
+    if (pos > 82){ d.style.transform = 'translateX(-82%)'; }
+    else if (pos < 12){ d.style.transform = 'translateX(-24%)'; }
+    d.innerHTML = '<div class="lbl">' + m.lbl + '</div>' +
+                  '<div class="val">' + m.v.toFixed(1).replace('.', ',') + ' Jahre</div>' +
+                  '<div class="dot"></div>';
+    axis.appendChild(d);
+  });
+
+  /* ---------- 02 Energiebilanz ---------- */
+  var FLOW = [
+    {name:'Worst Case',  cls:'s-save-w', gen:486, save:338, standby:123, loss:25, feed:0},
+    {name:'Normal Case', cls:'s-save-n', gen:627, save:542, standby:70,  loss:15, feed:0},
+    {name:'Best Case',   cls:'s-save-b', gen:948, save:871, standby:35,  loss:17, feed:24}
+  ];
+  var flow = document.getElementById('flow');
+  FLOW.forEach(function(f){
+    var row = document.createElement('div');
+    row.className = 'flowrow';
+    var pct = function(v){ return (v / f.gen * 100) + '%'; };
+    var segs = [
+      {v:f.save,    cls:f.cls + ' s1', label:'vermiedener Netzbezug', show:true},
+      {v:f.standby, cls:'s-standby',   label:'Standby des Geräts',    show:f.standby / f.gen > 0.13},
+      {v:f.loss,    cls:'s-loss',      label:'Speicherverluste',      show:false},
+      {v:f.feed,    cls:'s-feed',      label:'Überschuss ins Netz',   show:false}
+    ];
+    var html = '<div class="fl-head"><span>' + f.name +
+               '</span><b>' + f.gen + ' kWh erzeugt</b></div><div class="stack">';
+    segs.forEach(function(s){
+      if (s.v <= 0) return;
+      html += '<div class="seg ' + s.cls + '" style="width:' + pct(s.v) +
+              '" data-l="' + s.label + '" data-v="' + s.v + '">' +
+              (s.show ? s.v + ' kWh' : '') + '</div>';
+    });
+    html += '</div>';
+    row.innerHTML = html;
+    flow.appendChild(row);
+    row.querySelectorAll('.seg').forEach(function(seg){
+      var v = seg.getAttribute('data-v');
+      bind(seg, '<span class="tt">' + f.name + ' · ' + seg.getAttribute('data-l') +
+                '</span>' + v + ' kWh · ' + Math.round(v / f.gen * 100) + ' % der Erzeugung');
+    });
+  });
+
+  /* ---------- 03 Monatsertrag ---------- */
+  var MONTHS = ['Jan','Feb','Mrz','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+  var SERIES = [
+    {name:'Worst Case',  cls:'b-w', data:[29,35,47,49,48,45,47,49,48,41,25,23]},
+    {name:'Normal Case', cls:'b-n', data:[37,45,61,64,62,57,61,64,62,53,33,29]},
+    {name:'Best Case',   cls:'b-b', data:[30,47,78,103,123,124,130,117,88,56,29,23]}
+  ];
+  var Y_MAX = 140;
+  var plot = document.getElementById('plot');
+  var xaxis = document.getElementById('xaxis');
+  var yaxis = document.getElementById('yaxis');
+  [140,105,70,35,0].forEach(function(v){
+    var d = document.createElement('div');
+    d.textContent = v;
+    yaxis.appendChild(d);
+  });
+  MONTHS.forEach(function(m, i){
+    var g = document.createElement('div');
+    g.className = 'mgroup';
+    SERIES.forEach(function(s){
+      var b = document.createElement('div');
+      b.className = 'bar ' + s.cls;
+      b.style.height = (s.data[i] / Y_MAX * 100) + '%';
+      bind(b, '<span class="tt">' + s.name + ' · ' + m + '</span>' + s.data[i] + ' kWh');
+      g.appendChild(b);
+    });
+    plot.appendChild(g);
+    var x = document.createElement('div');
+    x.textContent = m;
+    xaxis.appendChild(x);
+  });
+
+  /* ---------- 05 / 06 Sensitivitäten ---------- */
+  function hbars(id, rows, max, unit){
+    var el = document.getElementById(id);
+    rows.forEach(function(r){
+      var d = document.createElement('div');
+      d.className = 'hrow' + (r.tone ? ' ' + r.tone : '');
+      d.innerHTML = '<div class="hl">' + r.label + '</div>' +
+                    '<div class="htrack"><div class="hfill" style="width:' +
+                    (r.v / max * 100) + '%"></div></div>' +
+                    '<div class="hv">' + r.v.toFixed(1).replace('.', ',') + ' ' + unit + '</div>';
+      el.appendChild(d);
+      bind(d, '<span class="tt">' + r.label + '</span>Amortisation ' +
+              r.v.toFixed(1).replace('.', ',') + ' Jahre' + (r.npv ? ' · NPV ' + r.npv : ''));
+    });
+  }
+
+  hbars('hb-foerder', [
+    {label:'0 €',   v:5.4, npv:'2.232 €', tone:'lo'},
+    {label:'160 €', v:4.6, npv:'2.392 €'},
+    {label:'320 €', v:3.7, npv:'2.552 €', tone:'hi'}
+  ], 6.0, 'J');
+
+  hbars('hb-mount', [
+    {label:'senkrecht 90°', v:3.7, npv:'2.552 €', tone:'lo'},
+    {label:'geneigt 20°',   v:2.8, npv:'3.532 €', tone:'hi'},
+    {label:'geneigt 30°',   v:2.7, npv:'3.750 €', tone:'hi'}
+  ], 4.2, 'J');
+
+  hbars('hb-shade', [
+    {label:'0,55 stark',  v:5.6, npv:'1.425 €', tone:'lo'},
+    {label:'0,65',        v:4.6, npv:'1.879 €'},
+    {label:'0,75',        v:3.9, npv:'2.329 €'},
+    {label:'0,85',        v:3.4, npv:'2.774 €'},
+    {label:'0,95 frei',   v:3.1, npv:'3.214 €', tone:'hi'}
+  ], 6.2, 'J');
+
+  hbars('hb-price', [
+    {label:'24,00 ct', v:5.0, npv:'1.700 €', tone:'lo'},
+    {label:'28,00 ct', v:4.3, npv:'2.104 €'},
+    {label:'32,44 ct', v:3.7, npv:'2.552 €'},
+    {label:'36,00 ct', v:3.3, npv:'2.912 €'},
+    {label:'42,00 ct', v:2.8, npv:'3.518 €', tone:'hi'}
+  ], 5.6, 'J');
+
+  hbars('hb-standby', [
+    {label:'2 W · 18 kWh',   v:3.4, npv:'2.883 €', tone:'hi'},
+    {label:'5 W · 44 kWh',   v:3.5, npv:'2.718 €'},
+    {label:'8 W · 70 kWh',   v:3.7, npv:'2.552 €'},
+    {label:'12 W · 105 kWh', v:3.9, npv:'2.332 €'},
+    {label:'18 W · 158 kWh', v:4.4, npv:'2.000 €', tone:'lo'}
+  ], 4.9, 'J');
+})();
+</script>

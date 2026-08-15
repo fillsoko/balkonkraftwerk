@@ -23,10 +23,11 @@ npm run check    # Modell gegen Presets und Randfälle prüfen
 Das Projekt ist ein Vite-Standardprojekt und wird von Vercel ohne weitere
 Einstellungen erkannt:
 
+- **Production Branch:** `main` — hier liegt die App
 - **Framework Preset:** Vite (steht auch in `vercel.json`)
 - **Build Command:** `npm run build`
 - **Output Directory:** `dist`
-- **Node:** 18 oder neuer
+- **Node:** 18 oder neuer (via `engines` in der `package.json`)
 
 Import über <https://vercel.com/new>, Repository auswählen, deployen. Es sind
 keine Umgebungsvariablen, keine Serverfunktionen und keine externen Dienste

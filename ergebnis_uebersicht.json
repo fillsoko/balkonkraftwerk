@@ -1,0 +1,355 @@
+{
+  "szenarien": [
+    {
+      "szenario": "Worst Case",
+      "spez_ertrag_kwh_kwp": 486,
+      "erzeugung_j1_kwh": 486,
+      "netto_nutzbar_kwh": 461,
+      "eigenverbrauch_kwh": 461,
+      "standby_kwh": 123,
+      "wirksame_ersparnis_kwh": 338,
+      "einspeisung_kwh": 0,
+      "eigenverbrauchsquote_prozent": 95,
+      "autarkie_prozent": 19,
+      "invest_brutto_eur": 1020.65,
+      "foerderung_eur": 0.0,
+      "invest_netto_eur": 1020.65,
+      "ersparnis_j1_eur": 94.71,
+      "amortisation_statisch_a": 18.7,
+      "amortisation_dynamisch_a": null,
+      "ueberschuss_20a_eur": 93,
+      "npv_eur": -163,
+      "irr_prozent": 0.9,
+      "lcoe_ct_kwh": 31.5
+    },
+    {
+      "szenario": "Normal Case",
+      "spez_ertrag_kwh_kwp": 627,
+      "erzeugung_j1_kwh": 627,
+      "netto_nutzbar_kwh": 612,
+      "eigenverbrauch_kwh": 612,
+      "standby_kwh": 70,
+      "wirksame_ersparnis_kwh": 542,
+      "einspeisung_kwh": 0,
+      "eigenverbrauchsquote_prozent": 98,
+      "autarkie_prozent": 22,
+      "invest_brutto_eur": 960.65,
+      "foerderung_eur": 320.0,
+      "invest_netto_eur": 640.65,
+      "ersparnis_j1_eur": 175.79,
+      "amortisation_statisch_a": 3.7,
+      "amortisation_dynamisch_a": 3.9,
+      "ueberschuss_20a_eur": 3303,
+      "npv_eur": 2552,
+      "irr_prozent": 27.9,
+      "lcoe_ct_kwh": 8.6
+    },
+    {
+      "szenario": "Best Case",
+      "spez_ertrag_kwh_kwp": 948,
+      "erzeugung_j1_kwh": 948,
+      "netto_nutzbar_kwh": 930,
+      "eigenverbrauch_kwh": 906,
+      "standby_kwh": 35,
+      "wirksame_ersparnis_kwh": 871,
+      "einspeisung_kwh": 24,
+      "eigenverbrauchsquote_prozent": 96,
+      "autarkie_prozent": 25,
+      "invest_brutto_eur": 930.65,
+      "foerderung_eur": 320.0,
+      "invest_netto_eur": 610.65,
+      "ersparnis_j1_eur": 313.59,
+      "amortisation_statisch_a": 1.9,
+      "amortisation_dynamisch_a": 1.9,
+      "ueberschuss_20a_eur": 7899,
+      "npv_eur": 6990,
+      "irr_prozent": 54.4,
+      "lcoe_ct_kwh": 4.0
+    }
+  ],
+  "sensitivitaet": {
+    "shading_factor": [
+      {
+        "wert": 0.55,
+        "npv": 1425.4556558238141,
+        "amortisation": 5.59201797722843,
+        "irr": 17.889509104891342,
+        "ertrag_jahr1": 431.2
+      },
+      {
+        "wert": 0.65,
+        "npv": 1878.9890923435883,
+        "amortisation": 4.6216914897556105,
+        "irr": 22.005415454712228,
+        "ertrag_jahr1": 509.6000000000001
+      },
+      {
+        "wert": 0.75,
+        "npv": 2329.03537997063,
+        "amortisation": 3.94420257231324,
+        "irr": 25.957370954514303,
+        "ertrag_jahr1": 588.0000000000001
+      },
+      {
+        "wert": 0.85,
+        "npv": 2774.2708060591617,
+        "amortisation": 3.4437570316064114,
+        "irr": 29.782444127327434,
+        "ertrag_jahr1": 666.3999999999999
+      },
+      {
+        "wert": 0.95,
+        "npv": 3213.6815427547153,
+        "amortisation": 3.0624154168510507,
+        "irr": 33.513974956843754,
+        "ertrag_jahr1": 744.8
+      }
+    ],
+    "price_ct": [
+      {
+        "wert": 24.0,
+        "npv": 1700.421105086858,
+        "amortisation": 4.9718164073259965,
+        "irr": 20.37784204673797,
+        "ertrag_jahr1": 627.1999999999999
+      },
+      {
+        "wert": 28.0,
+        "npv": 2104.2258170551654,
+        "amortisation": 4.259505184532064,
+        "irr": 23.979253525703502,
+        "ertrag_jahr1": 627.1999999999999
+      },
+      {
+        "wert": 32.44,
+        "npv": 2552.4490473399856,
+        "amortisation": 3.6754659031387984,
+        "irr": 27.885505470086713,
+        "ertrag_jahr1": 627.1999999999999
+      },
+      {
+        "wert": 36.0,
+        "npv": 2911.8352409917798,
+        "amortisation": 3.311461871263886,
+        "irr": 30.97397130385885,
+        "ertrag_jahr1": 627.1999999999999
+      },
+      {
+        "wert": 42.0,
+        "npv": 3517.542308944241,
+        "amortisation": 2.8382566571991408,
+        "irr": 36.1269904955955,
+        "ertrag_jahr1": 627.1999999999999
+      }
+    ],
+    "standby_w": [
+      {
+        "wert": 2.0,
+        "npv": 2883.4112691681516,
+        "amortisation": 3.3513332497312103,
+        "irr": 30.636721482452966,
+        "ertrag_jahr1": 627.1999999999999
+      },
+      {
+        "wert": 5.0,
+        "npv": 2717.956712123783,
+        "amortisation": 3.505615090458213,
+        "irr": 29.265607936889737,
+        "ertrag_jahr1": 627.1999999999999
+      },
+      {
+        "wert": 8.0,
+        "npv": 2552.4490473399856,
+        "amortisation": 3.6754659031387984,
+        "irr": 27.885505470086713,
+        "ertrag_jahr1": 627.1999999999999
+      },
+      {
+        "wert": 12.0,
+        "npv": 2331.702848425927,
+        "amortisation": 3.930475473388928,
+        "irr": 26.028939372670735,
+        "ertrag_jahr1": 627.1999999999999
+      },
+      {
+        "wert": 18.0,
+        "npv": 2000.4671594606298,
+        "amortisation": 4.384643161780273,
+        "irr": 23.19996081552641,
+        "ertrag_jahr1": 627.1999999999999
+      }
+    ],
+    "subsidy": [
+      {
+        "wert": 0.0,
+        "npv": 2232.4490473399856,
+        "amortisation": 5.439681006051616,
+        "irr": 18.459174653399913,
+        "ertrag_jahr1": 627.1999999999999
+      },
+      {
+        "wert": 160.0,
+        "npv": 2392.4490473399865,
+        "amortisation": 4.563223608594215,
+        "irr": 22.308507829856417,
+        "ertrag_jahr1": 627.1999999999999
+      },
+      {
+        "wert": 320.0,
+        "npv": 2552.4490473399856,
+        "amortisation": 3.6754659031387984,
+        "irr": 27.885505470086713,
+        "ertrag_jahr1": 627.1999999999999
+      }
+    ],
+    "consumption_kwh": [
+      {
+        "wert": 1500.0,
+        "npv": 2429.0775443897924,
+        "amortisation": 3.8523227462055387,
+        "irr": 26.666784149309773,
+        "ertrag_jahr1": 627.1999999999999
+      },
+      {
+        "wert": 2000.0,
+        "npv": 2513.1296655874567,
+        "amortisation": 3.7220656875002356,
+        "irr": 27.53630038722451,
+        "ertrag_jahr1": 627.1999999999999
+      },
+      {
+        "wert": 2500.0,
+        "npv": 2552.4490473399856,
+        "amortisation": 3.6754659031387984,
+        "irr": 27.885505470086713,
+        "ertrag_jahr1": 627.1999999999999
+      },
+      {
+        "wert": 3500.0,
+        "npv": 2598.506228392506,
+        "amortisation": 3.6232174159993384,
+        "irr": 28.28913577068083,
+        "ertrag_jahr1": 627.1999999999999
+      },
+      {
+        "wert": 4500.0,
+        "npv": 2626.782871914782,
+        "amortisation": 3.5909594710686714,
+        "irr": 28.542107560739016,
+        "ertrag_jahr1": 627.1999999999999
+      }
+    ],
+    "mount": [
+      {
+        "wert": "senkrecht_90",
+        "npv": 2552.4490473399856,
+        "amortisation": 3.6754659031387984,
+        "irr": 27.885505470086713,
+        "ertrag_jahr1": 627.1999999999999
+      },
+      {
+        "wert": "schraeg_20",
+        "npv": 3532.1124362028804,
+        "amortisation": 2.828923235418244,
+        "irr": 36.24393687233617,
+        "ertrag_jahr1": 842.2399999999999
+      },
+      {
+        "wert": "schraeg_30",
+        "npv": 3750.191951665655,
+        "amortisation": 2.6900871337953856,
+        "irr": 38.0895502941878,
+        "ertrag_jahr1": 887.04
+      }
+    ]
+  },
+  "speichergroesse": {
+    "Worst Case": [
+      {
+        "variante": "ohne Speicher",
+        "kapazitaet": 0.0,
+        "eigenverbrauch_kwh": 331.4761362258752,
+        "quote": 0.7179808595825279,
+        "ersparnis_eur": 92.81331814324507,
+        "mehrkosten_eur": 0.0,
+        "vollzyklen": 0.0
+      },
+      {
+        "variante": "Ultra 1,92 kWh",
+        "kapazitaet": 1.92,
+        "eigenverbrauch_kwh": 338.25839144541897,
+        "quote": 0.948194518279746,
+        "ersparnis_eur": 94.71234960471732,
+        "mehrkosten_eur": 520.0,
+        "vollzyklen": 69.02853222198783
+      },
+      {
+        "variante": "Ultra X 3,84 kWh",
+        "kapazitaet": 3.84,
+        "eigenverbrauch_kwh": 338.25839144541897,
+        "quote": 0.948194518279746,
+        "ersparnis_eur": 94.71234960471732,
+        "mehrkosten_eur": 970.0,
+        "vollzyklen": 34.514266110993916
+      }
+    ],
+    "Normal Case": [
+      {
+        "variante": "ohne Speicher",
+        "kapazitaet": 0.0,
+        "eigenverbrauch_kwh": 487.79485688871,
+        "quote": 0.8056678202944995,
+        "ersparnis_eur": 158.2406515746975,
+        "mehrkosten_eur": 0.0,
+        "vollzyklen": 0.0
+      },
+      {
+        "variante": "Ultra 1,92 kWh",
+        "kapazitaet": 1.92,
+        "eigenverbrauch_kwh": 541.8891010392911,
+        "quote": 0.9757160411978493,
+        "ersparnis_eur": 175.788824377146,
+        "mehrkosten_eur": 520.0,
+        "vollzyklen": 64.23287348477238
+      },
+      {
+        "variante": "Ultra X 3,84 kWh",
+        "kapazitaet": 3.84,
+        "eigenverbrauch_kwh": 541.8891010392911,
+        "quote": 0.9757160411978493,
+        "ersparnis_eur": 175.788824377146,
+        "mehrkosten_eur": 970.0,
+        "vollzyklen": 32.11643674238619
+      }
+    ],
+    "Best Case": [
+      {
+        "variante": "ohne Speicher",
+        "kapazitaet": 0.0,
+        "eigenverbrauch_kwh": 730.1510446746277,
+        "quote": 0.7890820718028406,
+        "ersparnis_eur": 262.85437608286594,
+        "mehrkosten_eur": 0.0,
+        "vollzyklen": 0.0
+      },
+      {
+        "variante": "Ultra 1,92 kWh",
+        "kapazitaet": 1.92,
+        "eigenverbrauch_kwh": 871.0912078465491,
+        "quote": 0.9563188194935716,
+        "ersparnis_eur": 313.59283482475763,
+        "mehrkosten_eur": 520.0,
+        "vollzyklen": 95.47514813104374
+      },
+      {
+        "variante": "Ultra X 3,84 kWh",
+        "kapazitaet": 3.84,
+        "eigenverbrauch_kwh": 891.4380401085189,
+        "quote": 0.9777925955214863,
+        "ersparnis_eur": 320.9176944390668,
+        "mehrkosten_eur": 970.0,
+        "vollzyklen": 54.309428543139475
+      }
+    ]
+  }
+}
